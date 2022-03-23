@@ -1,0 +1,25 @@
+from collections import OrderedDict
+
+n = int(input())
+items_prices = OrderedDict()
+
+
+for i in range(n):
+    a = input().split()
+    b = ' '.join(a[0:-1])
+    
+    
+    if b in items_prices:
+        items_prices[b] = int(a[-1])  + items_prices[b]
+    else:
+        items_prices[b] = int(a[-1]) 
+    
+
+for i in items_prices:   
+    print(i, items_prices[i])
+
+
+"""
+The “TypeError: unhashable type: 'list'” error is raised when you try to assign a list as a key in a dictionary. 
+To solve this error, ensure you only assign a hashable object, such as a string or a tuple, as a key for a dictionary.
+"""
