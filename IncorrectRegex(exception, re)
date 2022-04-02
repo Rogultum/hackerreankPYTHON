@@ -1,0 +1,29 @@
+
+import re
+
+def regcheck(s):
+    result = True
+    try:
+        re.compile(s)
+    except re.error:
+        result = False
+    return result
+        
+    
+t = int(input())
+for _ in range(t):
+    a = input()
+    print(regcheck(a))
+    
+
+"""
+I guess y'all passed with just re.compile, but when I went looking for what I should use to check for valid regex, I found this thread on Stack Overflow:
+
+https://stackoverflow.com/questions/19630994/how-to-check-is-a-string-is-a-valid-regex-python#comment29145368_19630994
+
+In the comments, it is suggested that also check for TypeError if the pattern is not a strirng and to use RecursionError because :
+
+Something like re.compile("(" * 1000 + "a" + ")"*1000) will fail with RuntimeError: maximum recursion depth exceeded
+
+While these might not be relevent for this challenge, they might be useful later when checking regular expressions in real life in our own code. (tx, mvetom)
+"""
